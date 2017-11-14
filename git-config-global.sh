@@ -24,3 +24,6 @@ cat >~/.config/git/ignore <<EOF
 __pycache__/
 .vagrant/
 EOF
+
+# To avoid those ugly merge commits on pull
+git config --global pull.rebase true
