@@ -8,8 +8,8 @@ git config --global user.name Schlueter
 # I guess this is a default, I don't recall setting it
 git config --global color.ui auto
 
-# this keeps git quiet because it really wants this to be set, despite the fact that it says something about a default
-git config --global push.default simple
+# this automatically pushes branches to a new remote branch of the same name
+git config --global push.default current
 
 # setting the commentchar to something other than the default #
 # allows for markdown in pull requests created using hub
