@@ -19,11 +19,7 @@ git config --global core.commentchar %
 # This is one of the default values according to the git-config man page
 #
 # git config --global core.excludesFile ~/.config/git/ignore
-cat >~/.config/git/ignore <<EOF
-*.pyc
-__pycache__/
-.vagrant/
-EOF
+cp gitignore-global ~/.config/git/ignore
 
 # To avoid those ugly merge commits on pull
 git config --global pull.rebase true

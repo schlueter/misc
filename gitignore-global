@@ -1,0 +1,9 @@
+# Python Artifacts
+*.pyc
+*.retry
+__pycache__/
+.python-version
+
+# Tool Artifacts
+.vagrant/
+ubuntu-xenial-16.04-cloudimg-console.log
