@@ -7,7 +7,7 @@ cp tmux.conf ~/.tmux.conf
 mkdir ~/.config/ ~/workspace
 
 # Configure git
-source git-config-global.sh
+./git-config-global.sh
 
 # Install tools from source
 ./install-tmux-from-source.sh
