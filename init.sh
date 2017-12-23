@@ -35,8 +35,12 @@ case "$(uname -s)" in
             dbus-x11        \
             feh             \
             gnome-keyring   \
+            libbz2-dev      \
+            libdbus-1-dev   \
+            libdbus-glib-1-dev \
             libnotify-bin   \
             libreadline-dev \
+            libsqlite3-dev  \
             libssl-dev      \
             parted          \
             pulseaudio      \
