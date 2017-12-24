@@ -84,5 +84,5 @@ case "$(uname -s)" in
 esac
 
 # rbenv install 2.4.3
-# pyenv install 2.7.14
-# pyenv install 3.6.3
+# PYTHON_CONFIGURE_OPTS=--enable-shared pyenv install 2.7.14
+# PYTHON_CONFIGURE_OPTS=--enable-shared pyenv install 3.6.3
