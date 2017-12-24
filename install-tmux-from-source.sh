@@ -38,6 +38,11 @@ then
         ./autogen.sh
     )
 else
+    if ! curl -L https://api.github.com/repos/tmux/tmux/releases | jq -r '.[] | .tag_name' | grep -Fx "$TMUX_VER"
+    then
+        printf '!!!!!!!Invalid tmux version %s!!!!!!!' "$TMUX_VER" >&2
+        exit 2
+    fi
     curl -OL https://github.com/tmux/tmux/releases/download/${TMUX_VER}/tmux-${TMUX_VER}.tar.gz
     printf "\n>>> Extracting tmux %s...\n" ${TMUX_VER} ${LIBEVENT_VER}
     tar xzf tmux-${TMUX_VER}.tar.gz
