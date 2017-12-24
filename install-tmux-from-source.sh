@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-TMUX_VER=master
-LIBEVENT_VER=2.1.8-stable
+TMUX_VER="${TMUX_VER:-master}"
+LIBEVENT_VER="${LIBEVENT_VER:-2.1.8-stable}"
 TEMP_COMPILE=~/tmux-temp-compile
 COMMON_INSTALL_PREFIX=/opt
 
@@ -18,7 +18,7 @@ printf "\n>>> Downloading the releases ...\n"
 
 curl -OL https://github.com/libevent/libevent/releases/download/release-${LIBEVENT_VER}/libevent-${LIBEVENT_VER}.tar.gz
 
-printf "\n>>> Extracting libevent %s ...\n" ${TMUX_VER} ${LIBEVENT_VER}
+printf "\n>>> Extracting libevent %s ...\n" ${LIBEVENT_VER}
 tar xzf libevent-${LIBEVENT_VER}.tar.gz
 
 (
@@ -44,7 +44,7 @@ else
         exit 2
     fi
     curl -OL https://github.com/tmux/tmux/releases/download/${TMUX_VER}/tmux-${TMUX_VER}.tar.gz
-    printf "\n>>> Extracting tmux %s...\n" ${TMUX_VER} ${LIBEVENT_VER}
+    printf "\n>>> Extracting tmux %s...\n" ${TMUX_VER}
     tar xzf tmux-${TMUX_VER}.tar.gz
     TMUX_BUILD_DIR=tmux-$TMUX_VER
 fi
@@ -54,10 +54,12 @@ fi
 
     LDFLAGS="-L${COMMON_INSTALL_PREFIX}/lib" CPPFLAGS="-I${COMMON_INSTALL_PREFIX}/include" LIBS="-lresolv" ./configure --prefix=${COMMON_INSTALL_PREFIX}
     make
+    sudo make install
 
     printf "\n>>> Installing tmux in %s/bin ...\n" ${COMMON_INSTALL_PREFIX}
 
-    sudo make install
+    # link common install prefix tmux to default tmux install location
+    sudo ln -s ${COMMON_INSTALL_PREFIX}/bin/tmux /usr/local/bin/tmux
 
     printf "\n>>> Cleaning up by removing the temporary dir %s ...\n" ${TEMP_COMPILE}
 ) || exit
