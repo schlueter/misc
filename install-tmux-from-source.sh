@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+# TODO This is a wip
+#
+# I know that on ubuntu, if you install libevent-dev with apt,
+#
+#     git clone https://github.com/tmux/tmux.git && cd tmux && ./autogen && sudo make install
+#
+# will build and install tmux to /usr/local/bin
+
 TMUX_VER="${TMUX_VER:-master}"
 LIBEVENT_VER="${LIBEVENT_VER:-2.1.8-stable}"
 TEMP_COMPILE=~/tmux-temp-compile
