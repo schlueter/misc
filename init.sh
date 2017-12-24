@@ -51,21 +51,25 @@ case "$(uname -s)" in
             upower          \
             vlc-nox         \
             xscreensaver    \
+
+        if xinput | grep 'Apple Inc. Apple Internal Keyboard / Trackpad'
+        then
+            sed '/key <LSGT>/a \ \ \ \ // MANUAL FIX BS\n\ \ \ \ key <LSGT> { [ grave, asciitilde, grave, asciitilde ] };' \
+            /usr/share/X11/xkb/symbols/pc -i
+        fi
         ;;
     (Darwin)
         /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-        for cask in \
+
+        brew cask install \
             iterm2 \
             docker \
             minikube \
             transmission \
             vagrant \
             virtualbox
-        do
-            brew cask install $cask
-        done
 
-        for app in \
+        brew install \
             git \
             gnupg \
             openssl \
@@ -75,9 +79,6 @@ case "$(uname -s)" in
             tree \
             vim \
             zsh
-        do
-            brew install $app
-        done
 
         open ~/workspace/solarized/iterm2-colors-solarized/*
         ;;
