@@ -5,4 +5,7 @@
 - get dropbox working consistently on linux
 - start packaging commonly used apps
 - add vim setup tasks
+  - plug install
+  - YCM build
+  - vimproc build
 - benchmark zsh startup time (it's slow)
