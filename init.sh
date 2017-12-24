@@ -12,6 +12,7 @@ mkdir ~/.config/ ~/workspace
 # Install tools from source
 ./install-tmux-from-source.sh
 # TODO ./install-hub-from-source.sh
+# TODO ./install-jq-from-source.sh
 # TODO ./install-git-from-source.sh
 # TODO ./install-vim-from-source.sh
 # TODO ./install-zsh-from-source.sh
