@@ -61,6 +61,11 @@ case "$(uname -s)" in
     (Darwin)
         /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
+        defaults write -g AppleShowAllFiles -bool true
+        defaults write -g NSNavPanelExpandedStateForSaveMode -bool TRUE
+        defaults write com.apple.finder CreateDesktop false
+        killall Finder
+
         brew cask install \
             iterm2 \
             docker \
