@@ -19,14 +19,18 @@ mkdir ~/.config/ ~/workspace
 
 # Clone configuration repositories
 git clone --recursive git@github.com:schlueter/zsh-config ~/.config/zsh
-# TODO ruby-build install
+touch ~/.z
+
 git clone git@github.com:schlueter/bin ~/bin
-git clone git@github.com:schlueter/dot-vim ~/.vim
-git clone git@github.com:powerline/fonts ~/workspace/fonts
+
 git clone git@github.com:altercation/solarized.git ~/workspace/solarized
+# TODO configure iterm to use solarized
+# TODO install and configure vim config
 
 # Install fonts
+git clone git@github.com:powerline/fonts ~/workspace/fonts
 ~/workspace/fonts/install.sh
+# TODO configure iterm to use some font
 
 case "$(uname -s)" in
     (Linux)
@@ -67,6 +71,7 @@ case "$(uname -s)" in
         killall Finder
 
         brew cask install \
+            google-chrome \
             iterm2 \
             docker \
             minikube \
@@ -75,11 +80,12 @@ case "$(uname -s)" in
             virtualbox
 
         brew install \
+            cmake \
+            expect \
             git \
             gnupg \
             openssl \
             pinentry \
-            pkg-config \
             transmission \
             tree \
             vim \
@@ -90,6 +96,4 @@ case "$(uname -s)" in
 
 esac
 
-# rbenv install 2.4.3
-# PYTHON_CONFIGURE_OPTS=--enable-shared pyenv install 2.7.14
-# PYTHON_CONFIGURE_OPTS=--enable-shared pyenv install 3.6.3
+sudo chsh $(whoami) -s $(which zsh)
