@@ -67,7 +67,9 @@ case "$(uname -s)" in
 
         defaults write -g AppleShowAllFiles -bool true
         defaults write -g NSNavPanelExpandedStateForSaveMode -bool TRUE
-        defaults write com.apple.finder CreateDesktop false
+        defaults write com.apple.finder CreateDesktop true
+        # TODO configure dropbox first
+        # defaults write com.apple.screencapture location ~/Dropbox/Screenshots
         killall Finder
 
         brew cask install \
