@@ -19,7 +19,7 @@ set -e
 printf "\n>>> Creating and using temporary dir %s for downloading and compiling libevent and tmux ...\n" \
     ${TEMP_COMPILE}
 
-mkdir ${TEMP_COMPILE}
+mkdir ${TEMP_COMPILE} || true
 cd ${TEMP_COMPILE}
 
 printf "\n>>> Downloading the releases ...\n"
