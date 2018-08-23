@@ -54,7 +54,7 @@ case "$(uname -s)" in
             python-pip      \
             upower          \
             vlc-nox         \
-            xscreensaver    \
+            xscreensaver
 
         if xinput | grep 'Apple Inc. Apple Internal Keyboard / Trackpad'
         then
@@ -98,4 +98,4 @@ case "$(uname -s)" in
 
 esac
 
-sudo chsh $(whoami) -s $(which zsh)
+sudo chsh "$(whoami)" -s "$(which zsh)"

@@ -19,8 +19,12 @@ git config --global core.commentchar %
 # This is one of the default values according to the git-config man page
 #
 # git config --global core.excludesFile ~/.config/git/ignore
-mkdir ~/.config/git
-cp gitignore-global ~/.config/git/ignore
+[ ! -d ~/.config/git ] && mkdir ~/.config/git
+if [ ! -f ~/.config/git/ignore ] || ! diff gitignore-global ~/.config/git/ignore
+then
+    echo "Installing global gitignore to $HOME/.config/git/ignore" >&2
+    cp -f gitignore-global ~/.config/git/ignore
+fi
 
 # To avoid those ugly merge commits on pull
 git config --global pull.rebase true
