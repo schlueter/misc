@@ -1,0 +1,16 @@
+#!/bin/sh
+# Source my .zshenv to set the PATH and whatnot
+[ -f "$HOME/.zshenv" ] && . "$HOME/.zshenv"
+
+touchegg &
+compton &
+dunst &
+
+# set keyboard layout to dvorak and replace caps key for control
+setxkbmap -layout dvorak -option caps:ctrl_modifier
+xrandr --output eDP-1 --scale .85x.85
+
+# set background image
+feh --bg-center pictures/NASA/2017\ solar\ eclipse\ form\ Madras\ OR.jpg
+
+xmobar .xmonad/xmobar.hs &

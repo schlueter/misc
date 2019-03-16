@@ -1,0 +1,1 @@
+sudo efibootmgr --create --disk /dev/sda --part 1 --loader /EFI/arch-direct/vmlinuz-linux --label "Arch Linux (EFISTUB)" --unicode 'cryptdevice=PARTUUID="b7821cf3-2132-504f-a620-a5820c8c07c7:luks:allow-discards" root=UUID="5329bd9e-42da-4ab1-b1cf-5eefc07e87e9" rw initrd=/EFI/arch-direct/intel-ucode.img initrd=/EFI/arch-direct/initramfs-linux.img' --verbose

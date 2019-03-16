@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+build() {
+	(
+		if [ $$ ]
+		then
+			while [ -e /proc/$$ ]
+			do
+				sleep .5
+			done
+		fi
+		
+		mkdir -p /esp/EFI/arch-direct
+		rc1=$?
+
+		cp -af /boot/vmlinuz-linux \
+		      /boot/intel-ucode.img \
+		      /boot/initramfs-linux.img \
+		      /boot/initramfs-linux-fallback.img \
+		    /esp/EFI/arch-direct/
+		
+		if (($? + rc1))
+		then
+			echo "Failed to sync /boot with ESP"
+			exit 1
+		else
+			echo "Synced /boot with ESP"
+		fi
+	) &
+}
+
+help() {
+	cat <<HELP
+This hook waits for mkinitcpio to finish and copies the finished ramdisk and kernel to the ESP
+HELP
+}
+
