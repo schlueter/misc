@@ -2,15 +2,11 @@
 # Source my .zshenv to set the PATH and whatnot
 [ -f "$HOME/.zshenv" ] && . "$HOME/.zshenv"
 
-touchegg &
-compton &
-dunst &
-
-# set keyboard layout to dvorak and replace caps key for control
+# Set keyboard layout to dvorak and replace caps key for control
 setxkbmap -layout dvorak -option caps:ctrl_modifier
+# Configure monitor (macbook specific)
 xrandr --output eDP-1 --scale .85x.85
 
-# set background image
-feh --bg-center pictures/NASA/2017\ solar\ eclipse\ form\ Madras\ OR.jpg
+# Restart some session services
+systemctl --user restart touchegg compton
 
-xmobar .xmonad/xmobar.hs &
