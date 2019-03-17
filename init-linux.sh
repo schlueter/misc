@@ -2,7 +2,7 @@
 
 
 ############################################
-# Do stuff for specific distributions
+# Initialize specific distributions
 ############################################
 
 declare DISTRO
@@ -26,8 +26,16 @@ case "$DISTRO" in
         ;;
 esac
 
-init-linux-distro-${DISTRO// /-}.sh
+normalized_distro="${DISTRO// /-}"
+distro_init_script=init-linux-distro-"$normalized_distro".sh
+
+[ -f "$distro_init_script" ] && "$distro_init_script"
+
+############################################
+# Setup for specific init systems
+############################################
 
 init_system="$(ps -p 1 -o comm=)"
+init_system_script=setup-for-"$init_system".sh
 
-setup-for-"${init_system}".sh
+[ -f "$init_system_script" ] && "$init_system_script"
