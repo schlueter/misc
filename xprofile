@@ -10,3 +10,5 @@ xrandr --output eDP-1 --scale .85x.85
 # Restart some session services
 systemctl --user restart touchegg compton
 
+# Set background image with script from schlueter/bin
+set-random-background 300 &
