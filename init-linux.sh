@@ -27,3 +27,7 @@ case "$DISTRO" in
 esac
 
 init-linux-distro-${DISTRO// /-}.sh
+
+init_system="$(ps -p 1 -o comm=)"
+
+setup-for-"${init_system}".sh
