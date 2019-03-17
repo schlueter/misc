@@ -39,3 +39,10 @@ init_system="$(ps -p 1 -o comm=)"
 init_system_script=setup-for-"$init_system".sh
 
 [ -f "$init_system_script" ] && "$init_system_script"
+
+
+############################################
+# Setup for specific init systems
+############################################
+
+ln -s "$(git rev-parse --show-toplevel)"/xprofile "$HOME"/.xprofile

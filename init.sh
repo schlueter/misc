@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Install tmux config
-cp tmux.conf ~/.tmux.conf
+ln -s "$(git rev-parse --show-toplevel)"/tmux.conf "$HOME"/.tmux.conf
 
 # Create some directories
 mkdir ~/.config/ ~/workspace
