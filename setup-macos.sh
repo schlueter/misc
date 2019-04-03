@@ -44,3 +44,6 @@ defaults write com.apple.finder DisableAllAnimations -bool true
 # sending messages and opening windows for replies
 defaults write com.apple.Mail DisableSendAnimations -bool true
 defaults write com.apple.Mail DisableReplyAnimations -bool true
+
+# Prep for pyenv usage
+sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
