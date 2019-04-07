@@ -45,4 +45,6 @@ init_system_script=setup-for-"$init_system".sh
 # Setup for specific init systems
 ############################################
 
+mkdir -p "$HOME"/.local/share/applications
+ln -s "$(git rev-parse --show-toplevel)"/transmission-oneoff.desktop "$HOME"/.local/share/applications/transmission-oneoff.desktop
 ln -s "$(git rev-parse --show-toplevel)"/xprofile "$HOME"/.xprofile

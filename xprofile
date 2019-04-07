@@ -1,14 +1,14 @@
-#!/bin/sh
 # Source my .zshenv to set the PATH and whatnot
 [ -f "$HOME/.zshenv" ] && . "$HOME/.zshenv"
 
 # Set keyboard layout to dvorak and replace caps key for control
 setxkbmap -layout dvorak -option caps:ctrl_modifier
+
 # Configure monitor (macbook specific)
 xrandr --output eDP-1 --scale .85x.85
 
-# Restart some session services
-systemctl --user restart touchegg compton
+# Set lock to activate after 10 minutes
+xautolock -time 10 -locker screen-locker &
 
-# Set background image with script from schlueter/bin
-set-random-background 300 &
+# Restart some session services
+systemctl --user restart compton
