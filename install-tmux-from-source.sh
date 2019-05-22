@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/sh
 
 # TODO This is a wip
 #
@@ -8,10 +8,20 @@
 #
 # will build and install tmux to /usr/local/bin
 
+cleanup () {
+    if [ -z "$CLEAN_TMUX_BUILD_DIR" ]
+    then
+        printf "\n>>> Cleaning up by removing the temporary dir %s ...\n" "${TEMP_COMPILE}"
+        rm -rf "${TEMP_COMPILE}"
+    fi
+}
+
+trap cleanup EXIT
+
 TMUX_VER="${TMUX_VER:-master}"
 LIBEVENT_VER="${LIBEVENT_VER:-2.1.8-stable}"
 TEMP_COMPILE="$TMPDIR"/tmux-temp-compile
-COMMON_INSTALL_PREFIX=/opt
+COMMON_INSTALL_PREFIX=/usr/local
 
 set -e
 ((DEBUG)) && set -x
@@ -19,6 +29,7 @@ set -e
 printf "\n>>> Creating and using temporary dir %s for downloading and compiling libevent and tmux ...\n" \
     "${TEMP_COMPILE}"
 
+rm -rf "${TEMP_COMPILE}"
 mkdir "${TEMP_COMPILE}" || true
 cd "${TEMP_COMPILE}"
 
@@ -57,20 +68,13 @@ fi
 
 printf "\n>>> Compiling tmux ...\n"
 pushd "$TMUX_BUILD_DIR"
-
     LDFLAGS="-L${COMMON_INSTALL_PREFIX}/lib" \
         CPPFLAGS="-I${COMMON_INSTALL_PREFIX}/include" \
         LIBS="-lresolv" \
         ./configure --prefix="${COMMON_INSTALL_PREFIX}"
     make
+    printf "\n>>> Installing tmux to %s/bin ...\n" "${COMMON_INSTALL_PREFIX}"
     sudo make install
 
-    printf "\n>>> Installing tmux in %s/bin ...\n" "${COMMON_INSTALL_PREFIX}"
-
-    # link common install prefix tmux to default tmux install location
-    sudo ln -s "${COMMON_INSTALL_PREFIX}"/bin/tmux /usr/local/bin/tmux
-
-    printf "\n>>> Cleaning up by removing the temporary dir %s ...\n" "${TEMP_COMPILE}"
 popd
 
-rm -rf "${TEMP_COMPILE}"
