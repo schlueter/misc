@@ -1,12 +1,12 @@
 #!/usr/bin/sh
 
-# TODO This is a wip
-#
 # I know that on ubuntu, if you install libevent-dev with apt,
 #
 #     git clone https://github.com/tmux/tmux.git && cd tmux && ./autogen && sudo make install
 #
 # will build and install tmux to /usr/local/bin
+#
+# This script works on Arch.
 
 cleanup () {
     if [ -z "$CLEAN_TMUX_BUILD_DIR" ]
