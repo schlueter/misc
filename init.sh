@@ -4,7 +4,7 @@
 ln -s "$(git rev-parse --show-toplevel)"/tmux.conf "$HOME"/.tmux.conf
 
 # Create some directories
-mkdir ~/.config/ ~/workspace
+mkdir ~/.config/ ~/wip
 
 # Configure git
 ./git-config-global.sh
@@ -23,13 +23,13 @@ touch ~/.z
 
 git clone git@github.com:schlueter/bin ~/bin
 
-git clone git@github.com:altercation/solarized.git ~/workspace/solarized
+git clone git@github.com:altercation/solarized.git ~/wip/solarized
 # TODO configure iterm to use solarized
 # TODO install and configure vim config
 
 # Install fonts
-git clone git@github.com:powerline/fonts ~/workspace/fonts
-~/workspace/fonts/install.sh
+git clone git@github.com:powerline/fonts ~/wip/fonts
+~/wip/fonts/install.sh
 # TODO configure iterm to use some font
 
 case "$(uname -s)" in
@@ -93,7 +93,7 @@ case "$(uname -s)" in
             vim \
             zsh
 
-        open ~/workspace/solarized/iterm2-colors-solarized/*
+        open ~/wip/solarized/iterm2-colors-solarized/*
         ;;
 
 esac
