@@ -7,8 +7,11 @@ setxkbmap -layout dvorak -option caps:ctrl_modifier
 # Configure monitor (macbook specific)
 xrandr --output eDP-1 --scale .85x.85
 
-# Set lock to activate after 10 minutes
-xautolock -time 10 -locker screen-locker &
+# Load Xresources if it exists
+[ -f ~/.Xresources ] && xrdb -merge -I$HOME ~/.Xresources
+
+# Set a background (the xbg service will also do this if enabled)
+xbg
 
 # Restart some session services
 systemctl --user restart compton
