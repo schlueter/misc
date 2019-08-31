@@ -1,0 +1,13 @@
+FROM archlinux/base
+
+RUN pacman --noconfirm --sync --refresh sudo && \
+    groupadd nopasswd-sudoers && \
+    echo '%nopasswd-sudoers ALL=(ALL) NOPASSWD: ALL' >/etc/sudoers.d/nopasswd-sudoers && \
+    useradd tester \
+    --user-group \
+    --create-home \
+    --home-dir /home/tester \
+    --groups nopasswd-sudoers
+COPY . .
+USER tester
+RUN ./init.sh
