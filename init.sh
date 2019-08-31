@@ -1,13 +1,7 @@
-#!/bin/sh
-
-# Install tmux config
-ln -s "$(git rev-parse --show-toplevel)"/tmux.conf "$HOME"/.tmux.conf
+#nstall instant-markdown=t!/bin/sh
 
 # Create some directories
 mkdir ~/.config/ ~/wip
-
-# Configure git
-./git-config-global.sh
 
 case "$(uname -s)" in
     (Linux)
@@ -48,6 +42,12 @@ case "$(uname -s)" in
         ;;
 
 esac
+
+# Install tmux config
+ln -s "$(git rev-parse --show-toplevel)"/tmux.conf "$HOME"/.tmux.conf
+
+# Configure git
+./git-config-global.sh
 
 # Install tools from source
 ./install-tmux-from-source.sh

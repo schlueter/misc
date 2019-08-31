@@ -8,6 +8,6 @@ RUN pacman --noconfirm --sync --refresh sudo && \
     --create-home \
     --home-dir /home/tester \
     --groups nopasswd-sudoers
-COPY . .
 USER tester
+COPY . .
 RUN ./init.sh
