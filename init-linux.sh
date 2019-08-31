@@ -5,31 +5,20 @@
 # Initialize specific distributions
 ############################################
 
-declare DISTRO
-
-if sed -n 's/^NAME=\(.*\)/\1/p' /etc/os-release | grep Ubuntu >/dev/null
-then
-    DISTRO=Ubuntu
-elif sed -n 's/^NAME=\(.*\)/\1/p' /etc/os-release | grep 'Arch Linux' >/dev/null
-then
-    DISTRO='Arch Linux'
-else
-    DISTRO=unsupported
-fi
+DISTRO="$(sed -n 's/^NAME="\?\([^"]*\)"\?/\1/p' /etc/os-release)"
 
 case "$DISTRO" in
-    Ubuntu) echo "Detected $DISTRO, running distribution initialization script:" >&2;;
-    Arch\ Linux) echo "Detected $DISTRO, running distribution initialization script:" >&2;;
-    unsupported)
+    (Ubuntu|Arch\ Linux) echo "Detected $DISTRO, running distribution initialization script:" >&2;;
+    *)
         echo 'Could not detect a known linux distribution, skipping distribution init...' >&2
         exit 5
         ;;
 esac
 
-normalized_distro="${DISTRO// /-}"
+normalized_distro="$(echo "$DISTRO" | sed 's/ /-/g')"
 distro_init_script=init-linux-distro-"$normalized_distro".sh
 
-[ -f "$distro_init_script" ] && "$distro_init_script"
+[ -f "$distro_init_script" ] && "./$distro_init_script"
 
 ############################################
 # Setup for specific init systems

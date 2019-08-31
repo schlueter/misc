@@ -1,10 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 
 install_yay() {
     git clone https://aur.archlinux.org/yay.git "$HOME/wip/yay"
-    pushd "$HOME/wip/yay"
+    pushd "$HOME/wip/yay" || exit 3
         makepkg --syncdeps --install
-    popd
+    popd || exit 4
 }
 
 install_package_list() {
@@ -17,6 +17,7 @@ install_package_list() {
         aur/zoom
         autoconf
         automake
+        base-devel
         clipmenu
         compton
         coreutils
@@ -47,7 +48,7 @@ install_package_list() {
         vim
         virtualbox
         vlc
-        which
+        xmonad
         xmonad-contrib
         xsel
         zsh
