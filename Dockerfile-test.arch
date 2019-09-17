@@ -8,6 +8,20 @@ RUN pacman --noconfirm --sync --refresh sudo && \
     --create-home \
     --home-dir /home/tester \
     --groups nopasswd-sudoers
+RUN sudo pacman --noconfirm --sync \
+    automake \
+    awk \
+    binutils \
+    coreutils \
+    fakeroot \
+    file \
+    gcc \
+    git \
+    make \
+    procps \
+    python \
+    sudo \
+    which
 USER tester
 COPY . .
-RUN ./init.sh
+RUN ./install-tmux-from-source.sh
