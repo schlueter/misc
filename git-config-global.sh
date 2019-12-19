@@ -1,5 +1,5 @@
 #!/bin/sh
-# remember that this needs to be an email address registered with your account on GitHub
+# For GitHub use, this must be registered there
 git config --global user.email b@schlueter.blue
 
 # for continuity of history it helps to always use an identical name here
@@ -16,15 +16,14 @@ git config --global push.default current
 # TODO make vim syntax highlighting respect this
 git config --global core.commentchar %
 
-# This is one of the default values according to the git-config man page
-#
+# To avoid those ugly merge commits on pull
+git config --global pull.rebase true
+
+# This is a default
 # git config --global core.excludesFile ~/.config/git/ignore
 [ ! -d ~/.config/git ] && mkdir ~/.config/git
 if [ ! -f ~/.config/git/ignore ] || ! diff gitignore-global ~/.config/git/ignore
 then
-    echo "Installing global gitignore to $HOME/.config/git/ignore" >&2
-    cp -f gitignore-global ~/.config/git/ignore
+    echo "Installing global gitignore to $XDG_CONFIG_HOME/git/ignore" >&2
+    ln -s $PWD/files/home/USER/.config/git/ignore "$XDG_CONFIG_HOME/git/ignore"
 fi
-
-# To avoid those ugly merge commits on pull
-git config --global pull.rebase true
