@@ -13,6 +13,8 @@ then
 elif [ "$(uname -s)" = Darwin ]
 then
     BROWSER=open
+else
+    BROWSER=firefox
 fi
 
 XDG_CONFIG_HOME="$HOME/.config"
@@ -22,7 +24,7 @@ GOPATH="$HOME/go"
 LANG='en_US.UTF-8'
 LESS='-g -i -M -R -w -z-4 -F -X'
 LESSOPEN='|lesspreprocess %s'
-NVM_DIR="$XDG_CONFIG_HOME/nvm"
+N_PREFIX="$HOME/.local"
 PAGER='less'
 PYENV_ROOT="$XDG_CONFIG_HOME/pyenv"
 PYTHONSTARTUP=~/.pythonrc
@@ -33,7 +35,7 @@ VISUAL="$EDITOR"
 Z_DIR="$XDG_CONFIG_HOME/z"
 ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
-PATH="$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.cargo/bin:$PYENV_ROOT/bin:$RBENV_ROOT/bin:/opt/terminus/bin:$PATH"
+PATH="$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.cargo/bin:$PYENV_ROOT/bin:$RBENV_ROOT/bin:$PATH"
 
 export \
     BROWSER \
@@ -43,7 +45,7 @@ export \
     LANG \
     LESS \
     LESSOPEN \
-    NVM_DIR \
+    N_PREFIX \
     PAGER \
     PATH \
     PYENV_ROOT \
