@@ -1,3 +1,7 @@
+#!/bin/sh
+# System icons are located at /System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/
+# These could be used to better label some of our custom directories
+
 # opening and closing windows and popovers
 defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
 
@@ -45,5 +49,4 @@ defaults write com.apple.finder DisableAllAnimations -bool true
 defaults write com.apple.Mail DisableSendAnimations -bool true
 defaults write com.apple.Mail DisableReplyAnimations -bool true
 
-# Prep for pyenv usage
-sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
+pkill Finder Dock
