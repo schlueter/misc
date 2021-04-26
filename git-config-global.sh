@@ -1,4 +1,6 @@
 #!/bin/sh
+cur_dir="$(dirname $PWD)"
+
 # For GitHub use, this must be registered there
 git config --global user.email b@schlueter.blue
 
@@ -10,6 +12,9 @@ git config --global color.ui auto
 
 # this automatically pushes branches to a new remote branch of the same name
 git config --global push.default current
+
+# obvious
+git config --global diff.tool vimdiff
 
 # setting the commentchar to something other than the default #
 # allows for markdown in pull requests created using hub
@@ -25,8 +30,8 @@ git config --global init.defaultBranch main
 # This is a default
 # git config --global core.excludesFile ~/.config/git/ignore
 [ ! -d ~/.config/git ] && mkdir ~/.config/git
-if [ ! -f ~/.config/git/ignore ] || ! diff gitignore-global ~/.config/git/ignore
+if [ ! -f ~/.config/git/ignore ] || ! diff "${cur_dir}/files/home/USER/.config/git/ignore" ~/.config/git/ignore
 then
     echo "Installing global gitignore to $XDG_CONFIG_HOME/git/ignore" >&2
-    ln -s $PWD/files/home/USER/.config/git/ignore "$XDG_CONFIG_HOME/git/ignore"
+    ln -s "${cur_dir}/files/home/USER/.config/git/ignore" "$XDG_CONFIG_HOME/git/ignore"
 fi
