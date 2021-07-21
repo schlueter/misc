@@ -1,1 +1,3 @@
-sudo efibootmgr --create --disk /dev/sda --part 1 --loader /EFI/arch-direct/vmlinuz-linux --label "Arch Linux (EFISTUB)" --unicode 'cryptdevice=UUID="f537208a-5acd-414a-911b-20ba6d6f269a:luks:allow-discards" quiet splash loglevel=3 rd.udev.log_priority=3 vt.global_cursor_default=0 root=UUID="5329bd9e-42da-4ab1-b1cf-5eefc07e87e9" rw initrd=/EFI/arch-direct/intel-ucode.img initrd=/EFI/arch-direct/initramfs-linux.img' --verbose
+efibootmgr --label Arch --create --disk /dev/sda --part 1 \
+  --loader /EFI/arch-direct/vmlinuz-linux \
+  --unicode 'rd.luks.name=463f1ed2-7bf3-4f89-a18e-b287af8cd817=cryptlvm root=/dev/vg/root rw initrd=/EFI/arch-direct/intel-ucode.img initrd=/EFI/arch-direct/initramfs-linux.img' --verbose
