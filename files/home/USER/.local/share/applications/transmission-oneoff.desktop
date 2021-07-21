@@ -1,5 +1,5 @@
 [Desktop Entry]
 Type=Application
-Exec=/usr/local/bin/st /usr/bin/transmission-cli %u
+Exec=/usr/bin/transmission-remote -a '%u'
 Name=One off torrent downloader for magnet links
 MimeType=x-scheme-handler/magnet;
