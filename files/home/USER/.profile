@@ -3,7 +3,7 @@
 if [ ! -d "$TMPDIR" ]
 then
     TMPDIR="/tmp/$LOGNAME"
-    mkdir -p "$TMPDIR"
+    [ ! -d "TMPDIR" ] && mkdir -p "$TMPDIR"
     chmod 700 "$TMPDIR"
 fi
 
@@ -39,7 +39,7 @@ ANSIBLE_CALLBACK_WHITELIST=profile_tasks
 ANSIBLE_FORCE_COLOR=true
 ANSIBLE_LOAD_CALLBACK_PLUGINS=1
 
-PATH="$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.tfenv/bin:$HOME/.cargo/bin:$PYENV_ROOT/bin:$RBENV_ROOT/bin:/usr/local/sbin:$PATH"
+PATH="$HOME/bin:$HOME/.local/bin:$PYENV_ROOT/bin:$HOME/.radicle/bin:$HOME/go/bin:$HOME/.tfenv/bin:$HOME/.cargo/bin:$RBENV_ROOT/bin:/usr/local/sbin:$PATH"
 
 export \
     BROWSER \
