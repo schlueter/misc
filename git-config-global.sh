@@ -19,6 +19,9 @@ git config --global core.commentchar %
 # To avoid those ugly merge commits on pull
 git config --global pull.rebase true
 
+# Set default branch name for init
+git config --global init.defaultBranch main
+
 # This is a default
 # git config --global core.excludesFile ~/.config/git/ignore
 [ ! -d ~/.config/git ] && mkdir ~/.config/git
