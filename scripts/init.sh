@@ -63,15 +63,10 @@ touch ~/.z
 
 git clone git@github.com:schlueter/bin ~/bin
 
-git clone git@github.com:altercation/solarized.git ~/wip/solarized
-# TODO configure iterm to use solarized
 # TODO install and configure vim config
 
 # Install fonts
 git clone git@github.com:powerline/fonts ~/wip/fonts
 ~/wip/fonts/install.sh
-# TODO configure iterm to use some font
-
-
 
 sudo chsh "$(whoami)" -s "$(command -v zsh)"
