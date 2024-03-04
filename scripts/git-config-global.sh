@@ -1,11 +1,18 @@
 #!/bin/sh
-cur_dir="$(dirname $PWD)"
+misc_root="$(cd $(dirname $0)/.. && pwd)"
+XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 
 # For GitHub use, this must be registered there
-git config --global user.email b@schlueter.blue
+if ! git config --global user.email &>/dev/null
+then
+    git config --global user.email b@schlueter.blue
+fi
 
 # for continuity of history it helps to always use an identical name here
-git config --global user.name Schlueter
+if ! git config --global user.name &>/dev/null
+then
+    git config --global user.name Schlueter
+fi
 
 # I guess this is a default, I don't recall setting it
 git config --global color.ui auto
@@ -14,8 +21,8 @@ git config --global color.ui auto
 git config --global push.default current
 
 # editors
-git config --global diff.tool vimdiff
-git config --global core.editor vim
+git config --global diff.tool 'nvim -d'
+git config --global core.editor nvim
 
 # setting the commentchar to something other than the default #
 # allows for markdown in pull requests created using hub
@@ -34,18 +41,22 @@ git config --global init.defaultBranch main
 # This is a default
 # git config --global core.excludesFile ~/.config/git/ignore
 [ ! -d ~/.config/git ] && mkdir ~/.config/git
-if [ ! -f ~/.config/git/ignore ] || ! diff "${cur_dir}/files/home/USER/.config/git/ignore" ~/.config/git/ignore
+if [ ! -f "$XDG_CONFIG_HOME/git/ignore" ] || ! diff "$misc_root/files/XDG_CONFIG_HOME/git/ignore" "$XDG_CONFIG_HOME/git/ignore"
 then
     echo "Installing global gitignore to $XDG_CONFIG_HOME/git/ignore" >&2
-    ln -s "${cur_dir}/files/home/USER/.config/git/ignore" "$XDG_CONFIG_HOME/git/ignore"
+    ln -s "$misc_root/files/XDG_CONFIG_HOME/git/ignore" "$XDG_CONFIG_HOME/git/ignore"
 fi
 
-if command -v gpg >/dev/null
+if ! git config --global user.signingkey &>/dev/null
 then
-    secret_key="$(gpg -K | sed -n '/sec/{n;p}')"
-    if [ -n "$secret_key" ]
+    if command -v gpg >/dev/null
     then
-        git config --global gpg.program gpg
-        git config --global user.signingkey "${secret_key// }"
+        secret_key="$(gpg --list-secret-keys --with-colons \
+                     | awk -F: '/^sec/{print $5;exit}')"
+        if [ -n "$secret_key" ]
+        then
+            git config --global gpg.program gpg
+            git config --global user.signingkey "${secret_key// }"
+        fi
     fi
 fi

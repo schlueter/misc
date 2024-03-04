@@ -1,18 +1,25 @@
-# Python Artifacts
+# Python
 *.pyc
 *.retry
 __pycache__/
 .python-version
 
-# Ruby artifacts
+# Ruby
 .ruby-version
 
-# Tool Artifacts
+# Node.js
+.webpack/
+
+# vim
+*~
+*.swp
+*.swo
+
+# others
 .vagrant/
 ubuntu-xenial-16.04-cloudimg-console.log
 venv*
 notes/
 *.secrets.*
-*~
-*.swp
-*.swo
+
+
