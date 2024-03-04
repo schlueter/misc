@@ -21,5 +21,6 @@ ubuntu-xenial-16.04-cloudimg-console.log
 venv*
 notes/
 *.secrets.*
+.idea/
 
 
