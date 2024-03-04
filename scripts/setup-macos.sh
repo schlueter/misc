@@ -1,6 +1,10 @@
 #!/bin/sh
 # System icons are located at /System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/
 # These could be used to better label some of our custom directories
+set -x
+
+# disable dictionary lookup popup
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 70 "{enabled=NO;}"
 
 # opening and closing windows and popovers
 defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
@@ -50,3 +54,7 @@ defaults write com.apple.Mail DisableSendAnimations -bool true
 defaults write com.apple.Mail DisableReplyAnimations -bool true
 
 pkill Finder Dock
+
+# scheduled sleep
+sudo pmset repeat sleep weekdays 19:00:00
+
