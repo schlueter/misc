@@ -37,6 +37,7 @@ git config --global init.defaultBranch main
 if [ ! -f "$XDG_CONFIG_HOME/git/ignore" ] || ! diff "$misc_root/files/XDG_CONFIG_HOME/git/ignore" "$XDG_CONFIG_HOME/git/ignore"
 then
     echo "Installing global gitignore to $XDG_CONFIG_HOME/git/ignore" >&2
+    [ -d "$XDG_CONFIG_HOME/git" ] || mkdir "$XDG_CONFIG_HOME/git"
     ln -s "$misc_root/files/XDG_CONFIG_HOME/git/ignore" "$XDG_CONFIG_HOME/git/ignore"
 fi
 
