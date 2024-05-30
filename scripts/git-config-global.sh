@@ -33,6 +33,9 @@ git config --global rerere.enabled true
 # Set default branch name for init
 git config --global init.defaultBranch main
 
+# Set default remote for instances where multiple remotes are used
+git config --global checkout.defaultRemote origin
+
 # This is the default expected location
 if [ ! -f "$XDG_CONFIG_HOME/git/ignore" ] || ! diff "$misc_root/files/XDG_CONFIG_HOME/git/ignore" "$XDG_CONFIG_HOME/git/ignore"
 then
