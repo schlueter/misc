@@ -3,10 +3,10 @@ misc_root="$(cd $(dirname $0)/.. && pwd)"
 XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 
 # For GitHub use, this must be registered there
-git config --global user.email b@schlueter.blue
+git config --global user.email &>/dev/null || git config --global user.email brandon@schlueter.dev
 
 # for continuity of history it helps to always use an identical name here
-git config --global user.name Schlueter
+git config --global user.name &>/dev/null || git config --global user.name Schlueter
 
 # I guess this is a default, I don't recall setting it
 git config --global color.ui auto
@@ -32,6 +32,11 @@ git config --global rerere.enabled true
 
 # Set default branch name for init
 git config --global init.defaultBranch main
+
+# When rebasing, skip commits that are already upstream
+# hint: use --reapply-cherry-picks to include skipped commits
+# hint: Disable this message with "git config advice.skippedCherryPicks false"
+git config --global advice.skippedCherryPicks false
 
 # This is the default expected location
 if [ ! -f "$XDG_CONFIG_HOME/git/ignore" ] || ! diff "$misc_root/files/XDG_CONFIG_HOME/git/ignore" "$XDG_CONFIG_HOME/git/ignore"
